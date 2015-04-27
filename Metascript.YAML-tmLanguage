@@ -1,0 +1,143 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Metascript
+scopeName: source.Metascript
+fileTypes: [mjs]
+uuid: 8ddea5ae-2731-484e-ae56-858360a74382
+
+patterns:
+- name: string.quoted.heredoc.metascript
+  begin: (''')
+  beginCaptures:
+    '0':
+      name: punctuation.definition.string.begin.metascript
+  end: (''')
+  endCaptures:
+    '0':
+      name: punctuation.definition.string.end.metascript
+
+- name: string.quoted.double.heredoc.metascript
+  begin: (""")
+  beginCaptures:
+    '0':
+      name: punctuation.definition.string.begin.metascript
+  end: (""")
+  endCaptures:
+    '0':
+      name: punctuation.definition.string.end.metascript
+  patterns:
+  - name: constant.character.escape.metascript
+    match: \\(x\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)
+
+- name: string.quoted.double.metascript
+  begin: (")
+  beginCaptures:
+    '0':
+      name: punctuation.definition.string.begin.metascript
+  end: (")
+  endCaptures:
+    '0':
+      name: punctuation.definition.string.end.metascript
+  patterns:
+  - name: constant.character.escape.metascript
+    match: \\(x\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)
+  
+- name: string.quoted.single.metascript
+  begin: (')
+  beginCaptures:
+    '0':
+      name: punctuation.definition.string.begin.metascript
+  end: (')
+  endCaptures:
+    '0':
+      name: punctuation.definition.string.end.metascript
+
+- name: comment.metascript
+  match: ;.*$
+
+- name: keyword.reserved.metascript
+  match: (?:\b)(abstract|as|boolean|byte|char|class|const|debugger|default|delete|double|enum|export|extends)(?![\->!?])\b
+
+- name: keyword.reserved.metascript
+  match: (?:\b)(final|float|function|implements|import|in|instanceof|int|interface|is|long)(?![\->!?])\b
+
+- name: keyword.reserved.metascript
+  match: (?:\b)(namespace|native|package|private|protected|public|short|static|super|synchronized|throws|transient|typeof|use|volatile|with)(?![\->!?])\b
+
+- name: keyword.control.new.metascript
+  match: (?:\b)(new)(?![\->!?])\b
+
+- name: keyword.control.exception.metascript
+  match: (?:\b)(catch|finally|throw|try)(?![\->!?])\b
+
+- name: keyword.control.repeat.metascript
+  match: (?:\b)(loop|break|continue|while|yield)(?![\->!?])\b
+
+- name: keyword.control.repeat.metascript
+  match: \b(give!|next!)
+
+- name: keyword.control.conditional.metascript
+  match: (?:\b)(case|else|if)(?![\->!?])\b
+
+- name: keyword.control.metascript
+  match: \bdo!
+
+- name: keyword.control.metascript
+  match: (?:\b)(default|do|for|goto|return|switch)(?![\->!?])\b
+
+- name: storage.modifier.metascript
+  match: (?:\b)(const|var|void|let|fun)(?![\->!?])\b
+
+- name: constant.language.boolean.true.metascript
+  match: \b(true)(?![\->!?])\b
+
+- name: constant.language.boolean.false.metascript
+  match: (?:\b)(false)(?![\->!?])\b
+
+- name: constant.language.null.metascript
+  match: (?:\b)(null)(?![\->!?])\b
+
+- name: constant.language.metascript
+  match: (?:\b)(Infinity|NaN|undefined)(?![\->!?])\b
+
+- name: support.function.metascript
+  match: \b(require|parseInt|parse-int)(?![\->!?])\b
+
+- name: constant.numeric.metascript
+  match: \b((0([box])[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?))\b
+  # match: (?<!\$)\b((0([box])[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?))\b
+
+- name: storage.function.metascript
+  match: (?:\b)(this)(?![\->!?])\b
+
+- name: meta.delimiter.comma.metascript
+  match: (,)
+
+- name: meta.brace.round.metascript
+  match: \(|\)
+- name: meta.brace.square.metascript
+  match: \(|\)
+- name: meta.brace.curly.metascript
+  match: \(|\)
+
+
+
+#- match: '(\\b)((\\p{Alpha}|$|([-][\>]?))(\\p{Word}|$|([-][\>]?))*[?!]?)([\\s\\n\\r]*:)'
+#    captures:
+#      2:
+#        name: constant.language.metascript
+
+#- match: '(\\.[\\s\\n\\r]*)((\\p{Alpha}|$|([-][\>]?))(\\p{Word}|$|([-][\>]?))*[?!]?)'
+#    captures:
+#      2:
+#        name: constant.language.metascript
+
+- name: constant.other.symbol.metascript
+  match: (#(\p{Word}|[\->])+[!?]?)
+
+- name: entity.name.metascript
+  match: ((#|\p{Word})(\p{Word}|[\->])*[!?]?)
+
+- name: keyword.operator.metascript
+  match: ([:\.\\+\*\-\/<>\~\|^#@!\?&=`%]+)
+  # match: [\\\\\\+\\*\\-\\/<>\\:\\~\\|\\^\\#\\@\\!\\?\\&\\=\\~\\`\\%][\\.\\\\\\+\\*\\-\\/<>\\:\\~\\|\\^\\#\\@\\!\\?\\&\\=\\~\\`\\%]*
